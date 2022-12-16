@@ -6,8 +6,19 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const mongoose = require("mongoose");
+
 
 var app = express();
+
+//  mondodb connect
+mongoose
+.connect(
+    process.env.MONGODB_URI, 
+    {useNewUrlParser: true, useUnifiedTopology: true}
+)
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.log(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +38,8 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -39,3 +52,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
