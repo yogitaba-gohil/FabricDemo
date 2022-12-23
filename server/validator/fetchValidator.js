@@ -1,4 +1,5 @@
 const fetchValidator = (req, res, next) => {
+	console.log('req', req)
 	const { fetchApi } = req.body;
 	if (fetchApi) {
 		next();

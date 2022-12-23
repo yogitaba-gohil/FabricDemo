@@ -7,6 +7,7 @@ var fetchValidator = require("../validator/fetchValidator");
  */
 
 router.post("/", fetchValidator, async (req, res) => {
+	console.log('req', req)
 	const { fetchApi } = req.body;
 	let url;
 	if (fetchApi == 1) {
@@ -22,7 +23,7 @@ router.post("/", fetchValidator, async (req, res) => {
 
 	axiosRequest("GET", url)
 		.then((response) => {
-			// console.log("response : ", response.data);
+			console.log("response : ", response.data);
 			res.json({
 				success: true,
 				data: response?.data,
